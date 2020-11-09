@@ -4,8 +4,12 @@
 set nospell
 set nowrap
 set textwidth=99
-set makeprg=cargo\ build
+" set makeprg=cargo\ check\ --message-format=short
 " set keywordprg=:vertical\ term\ ++close\ rusty-man
+
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
 
 " -----------------------------------------------------------------------------
 "     - Rust help -
@@ -35,7 +39,6 @@ nmap <Leader>b :!clear;cargo test -- --nocapture<CR>
 nmap <Leader>B :!clear;env RUST_BACKTRACE=1 cargo test -- --nocapture<CR>
 nmap gd <Plug>(rust-def)
 nmap gv <Plug>(rust-def-vertical)
-nmap <leader>dT :call RunDebuggerFromTest()<CR>
 nmap <F5> :RB<CR>
 nmap <F8> :VBGcontinue<CR>
 nmap <F9> :VBGstepOver<CR>
@@ -48,6 +51,8 @@ nmap <F6> :VBGevalWordUnderCursor<CR>
 " -----------------------------------------------------------------------------
 ia pp eprintln!("{:?}",);<Left><Left>
 ia cmt cmt<Leader>t<Left>
+ia dd #[derive(Debug)]
+
 
 
 " -----------------------------------------------------------------------------

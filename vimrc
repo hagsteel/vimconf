@@ -52,7 +52,7 @@ set nowrap
 set nohlsearch
 set ttimeoutlen=10
 set mouse=
-set noshowcmd
+" set noshowcmd
 set noswapfile
 set colorcolumn=110
 set nosmd
@@ -219,7 +219,6 @@ set guitablabel=%{GuiTabLabel()}
 "     --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 "     --color: Search color options
 " -----------------------------------------------------------------------------
-let g:fzf_preview_window = 'right:60%'
 nmap <C-p> :FZF<CR>
 command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
