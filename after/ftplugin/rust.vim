@@ -10,7 +10,6 @@ set textwidth=99
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
-
 " -----------------------------------------------------------------------------
 "     - Rust help -
 " -----------------------------------------------------------------------------
@@ -40,10 +39,6 @@ nmap <Leader>B :!clear;env RUST_BACKTRACE=1 cargo test -- --nocapture<CR>
 nmap gd <Plug>(rust-def)
 nmap gv <Plug>(rust-def-vertical)
 nmap <F5> :RB<CR>
-nmap <F8> :VBGcontinue<CR>
-nmap <F9> :VBGstepOver<CR>
-nmap <F10> :VBGstepIn<CR>
-nmap <F6> :VBGevalWordUnderCursor<CR>
 
 
 " -----------------------------------------------------------------------------
@@ -54,12 +49,12 @@ ia cmt cmt<Leader>t<Left>
 ia dd #[derive(Debug)]
 
 
-
 " -----------------------------------------------------------------------------
 "     - Debug stuff -
 " -----------------------------------------------------------------------------
 " Find rust function name
 " Taken from rust.vim (https://github.com/rust-lang/rust.vim)
+let g:vebugger_path_gdb = 'rust-gdb'
 function! FindTestFunctionNameUnderCursor() abort
     let cursor_line = line('.')
 

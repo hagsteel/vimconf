@@ -11,6 +11,15 @@ colorscheme hagsteel
 
 
 " -----------------------------------------------------------------------------
+"     - Debugging -
+" -----------------------------------------------------------------------------
+nmap <F8> :VBGcontinue<CR>
+nmap <F9> :VBGstepOver<CR>
+nmap <F10> :VBGstepIn<CR>
+nmap <F6> :VBGevalWordUnderCursor<CR>
+
+
+" -----------------------------------------------------------------------------
 "     - Line numbers -
 "     Use relative line numbers in insert mode
 " -----------------------------------------------------------------------------
@@ -100,6 +109,8 @@ endfunction
 function s:GetFileType()
     if &filetype ==# "rust"
         return ""
+    elseif &filetype ==# "c"
+        return ""
     elseif &filetype ==# "python"
         return ""
     elseif &filetype ==# "javascript"
@@ -220,7 +231,6 @@ set guitablabel=%{GuiTabLabel()}
 "     --color: Search color options
 " -----------------------------------------------------------------------------
 nmap <C-p> :FZF<CR>
-command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 nmap <C-f> :Find 
 
@@ -253,7 +263,7 @@ autocmd FileType rust nmap <buffer> gx <Plug>(rust-def-vertical)
 "       GDB debugging
 " ------------------------------------------------------------------------
 let g:vebugger_leader='<Leader>d'
-let g:vebugger_path_gdb = 'rust-gdb'
+let g:vebugger_path_gdb = 'gdb'
 let g:vebugger_breakpoint_text=''
 let g:vebugger_currentline_text=''
 
